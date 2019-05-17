@@ -20,7 +20,43 @@ const rebarData = [
   {name: '30M', dia: 29.9, area: 700}
 ];
 
-// calculte alpha1 value based on f'c provided
+// store Mf in data object
+const moment = document.querySelector('#momentForce');
+moment.onblur = function() {
+  let mf = Number(document.querySelector('#momentForce').value);
+  data.Mf = mf;
+}
+
+// store h in data object
+const height = document.querySelector('#h');
+height.onblur = function() {
+  let h = Number(document.querySelector('#h').value);
+  data.h = h;
+}
+
+// store d in data object
+const depth = document.querySelector('#d');
+depth.onblur = function() {
+  let d = Number(document.querySelector('#d').value);
+  data.d = d;
+}
+
+// store b in data object
+const base = document.querySelector('#b');
+base.onblur = function() {
+  let b = Number(document.querySelector('#b').value);
+  data.b = b;
+}
+
+// store cover in data object
+const cover = document.querySelector('#cover');
+cover.onblur = function() {
+  let cov = Number(document.querySelector('#cover').value);
+  data.cover = cov;
+}
+
+// calculte alpha1 & beta1 values based on f'c and
+// store 3 values in data object
 const concreteStrength = document.querySelector('#concStr');
 concreteStrength.onblur = function() {
   let fc = Number(document.querySelector('#concStr').value);
@@ -34,5 +70,8 @@ concreteStrength.onblur = function() {
   document.querySelector('#alpha1').innerHTML = alpha1.toFixed(3);
   document.querySelector('#beta1').innerHTML = beta1.toFixed(3);
 };
+
+// calculate As min and As req
+
 
 // calculate rho balance and rho required
