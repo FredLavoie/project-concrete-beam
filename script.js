@@ -1,18 +1,35 @@
-// list of cities with their data
-const cities = [
-  {name: 'Cornwall', Ss: 2.2, Sr: 0.4},
-  {name: 'Kingston', Ss: 2.1, Sr: 0.4},
-  {name: 'Ottawa', Ss: 2.4, Sr: 0.4},
+// object that holds the values provided by user
+const data = {
+  Mf: 0,
+  b: 0,
+  d: 0,
+  h: 0,
+  fc: 0,
+  fy: 400,
+  cover: 0
+};
+
+// object containing available rebar data
+const rebarData = [
+  {name: '10M', dia: 11.3, area: 100},
+  {name: '15M', dia: 16.0, area: 200},
+  {name: '20M', dia: 19.5, area: 300},
+  {name: '25M', dia: 25.2, area: 500},
+  {name: '30M', dia: 29.9, area: 700}
 ];
 
-// object that holds the values chosen by user
-const data = {Ss: 0, Sr: 0, Ie: 0};
+// object containing rebar data to be used in calculation
+const rebarChosen = {name: null, dia: 0, area: 0}; 
 
-// list of load factors
-let cb = 0.8;
-let cw = 1.0;
-let cs = 1.0;
-let ca = 1.0;
+
+
+
+
+
+
+
+
+
 
 // get 'Ss' and 'Sr' values in city based on selection
 const city = document.querySelector('#city');
