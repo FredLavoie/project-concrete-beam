@@ -10,15 +10,25 @@
 <body>
   <h1>Concrete Beam Calculator</h1>
   <h3>Input data:</h3>
-  <div id="input-form">
-    <form>
-      Mf (kN-m) = <input type="number" name="momentForce"><br>
-      h (mm) = <input type="number" name="h"><br>
-      d (mm) = <input type="number" name="d"><br>
-      b (mm) = <input type="number" name="b"><br>
-      f'c (MPa) = <input type="number" name="concStr"><br>
-      cover (mm) = <input type="number" name="cover">
+  <div id="input-div">
+    <form action="" name="inputForm">
+      Mf (kN-m) = <input type="number" id="momentForce"><br>
+      h (mm) = <input type="number" id="h"><br>
+      d (mm) = <input type="number" id="d"><br>
+      b (mm) = <input type="number" id="b"><br>
+      f'c (MPa) = <input type="number" id="concStr"><br>
+      cover (mm) = <input type="number" id="cover">
     </form>
+  </div>
+  <br><br>
+  <div>
+    <p class="parameters">fy = 400 MPa</p>
+    <p class="parameters">&alpha;<sub>1</sub> = <span id="alpha1">0.000</span></p>
+    <p class="parameters">&beta;<sub>1</sub> = <span id="beta1">0.000</span></p>
+    <br>
+    <p class="parameters">&rho;<sub>bal</sub> = <span id="rhoBal">0.00%</span></p>
+    <p class="parameters">&rho;<sub>req</sub> = <span id="rhoReq">0.00%</span></p>
+    <p class="parameters">Kr<sub>req</sub> = <span id="Kr">0.000</span></p>
   </div>
   <br>
   <button id="button">Calculate</button>
@@ -39,3 +49,5 @@
   <script src="script.js"></script>
 </body>
 </html>
+
+<form action=""></form>

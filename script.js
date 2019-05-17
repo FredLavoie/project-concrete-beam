@@ -6,7 +6,9 @@ const data = {
   h: 0,
   fc: 0,
   fy: 400,
-  cover: 0
+  cover: 0,
+  alpha1: 0,
+  beta1: 0
 };
 
 // object containing available rebar data
@@ -18,47 +20,19 @@ const rebarData = [
   {name: '30M', dia: 29.9, area: 700}
 ];
 
-// object containing rebar data to be used in calculation
-const rebarChosen = {name: null, dia: 0, area: 0}; 
-
-
-
-
-
-
-
-
-
-
-
-// get 'Ss' and 'Sr' values in city based on selection
-const city = document.querySelector('#city');
-city.onchange = function() {
-  for(let i = 0; i < cities.length; i++) {
-    if(cities[i].name == city.value) {
-      document.querySelector('#ss').innerHTML = cities[i].Ss + ' kPa';
-      document.querySelector('#sr').innerHTML = cities[i].Sr + ' kPa';
-      data.Ss = (cities[i].Ss);
-      data.Sr = (cities[i].Sr);
-    }
-  }
+// calculte alpha1 value based on f'c provided
+const concreteStrength = document.querySelector('#concStr');
+concreteStrength.onblur = function() {
+  let fc = Number(document.querySelector('#concStr').value);
+  let a = 0.85 - (0.0015 * fc);
+  let b = 0.97 - (0.0025 * fc);
+  let alpha1 = Math.max(a, 0.67);
+  let beta1 = Math.max(b, 0.67);
+  data.fc = fc;
+  data.alpha1 = alpha1;
+  data.beta1 = beta1;
+  document.querySelector('#alpha1').innerHTML = alpha1.toFixed(3);
+  document.querySelector('#beta1').innerHTML = beta1.toFixed(3);
 };
 
-// display importance factor based on selected category
-const imp = document.querySelector('#importance');
-imp.onchange = function() {
-  data.Ie = (Number(imp.value));
-  document.querySelector('#imp').innerHTML = imp.value;
-};
-
-
-// calculate and display the basic snow load
-const finalAnswer = document.querySelector('#answer');
-finalAnswer.onclick = function() {
-  let ss = data.Ss;
-  let sr = data.Sr;
-  let ie = data.Ie;
-  let snow = ie * (ss * (cb * cw * cs * ca) + sr);
-  document.querySelector('#snow').innerHTML = snow.toFixed(2) + ' kPa';
-};
-
+// calculate rho balance and rho required
