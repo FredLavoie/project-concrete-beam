@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Snow Load Calculator</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <h1>Snow Load Calculator</h1>
+  <p>Which city are you interested in? </p>
+  <select id="city">
+    <option value= '0'>Choose a city</option>
+    <option value= 'Cornwall'>Cornwall</option>
+    <option value= 'Kingston'>Kingston</option>
+    <option value= 'Ottawa'>Ottawa</option>
+  </select>
+  <p>Here are the snow and rain data for the selected city:</p>
+  <ul class="data">
+    <li>Ss = <span id="ss"></span></li>
+    <li>Sr = <span id="sr"></span></li>
+  </ul>
+  <p>Choose the importance category:</p>
+  <select id="importance">
+    <option value= 0>Choose Importance</option>
+    <option value= 0.80>Low</option>
+    <option value= 1.00>Normal</option>
+    <option value= 1.25>High</option>
+    <option value= 1.75>Post Disaster</option>
+  </select>
+  <p>Importance factor, Ie = <span id="imp"></span></p>
+  <p>Design snow load factors:</p>
+  <div id="list-block">
+    <ul id="factors">
+      <li>Basic snow load factor, Cb = 0.8</li>
+      <li>Wind Exposure factor, Cw = 1.0</li>
+      <li>Roof slope factor, Cs = 1.0</li>
+      <li>Roof shape factor, Ca = 1.0</li>
+    </ul>
+  </div>
+  <p>The roof snow load is:</p>
+  <ul>
+    <button id="answer">Calculate</button>
+    <li id='snowLoad'>S = Is[Ss(CbCwCsCa) + Sr] = <span id='snow'></span></li>
+  </ul>
+  <script src="script.js"></script>
+</body>
+</html>
