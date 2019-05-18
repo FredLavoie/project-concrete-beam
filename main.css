@@ -90,7 +90,7 @@ sub {
 input {
 	width: 50px;
 }
-#button {
+#button1, #button2 {
 	color: rgb(223, 219, 219);
 	background: rgb(55, 108, 223);
 	padding-left: 6px;
@@ -104,7 +104,7 @@ input {
 	text-align: center;
 	border-radius: 4px;
 }
-#button:hover {
+#button1:hover, #button2:hover  {
   background-color: rgb(43, 87, 182);
 }
 

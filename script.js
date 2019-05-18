@@ -8,7 +8,8 @@ const data = {
   fy: 400,
   cover: 0,
   alpha1: 0,
-  beta1: 0
+  beta1: 0,
+  Kr: 0
 };
 
 // object containing available rebar data
@@ -25,53 +26,63 @@ const moment = document.querySelector('#momentForce');
 moment.onblur = function() {
   let mf = Number(document.querySelector('#momentForce').value);
   data.Mf = mf;
-}
+};
 
 // store h in data object
 const height = document.querySelector('#h');
 height.onblur = function() {
   let h = Number(document.querySelector('#h').value);
   data.h = h;
-}
+};
 
 // store d in data object
 const depth = document.querySelector('#d');
 depth.onblur = function() {
   let d = Number(document.querySelector('#d').value);
   data.d = d;
-}
+};
 
 // store b in data object
 const base = document.querySelector('#b');
 base.onblur = function() {
   let b = Number(document.querySelector('#b').value);
   data.b = b;
-}
+};
 
 // store cover in data object
 const cover = document.querySelector('#cover');
 cover.onblur = function() {
   let cov = Number(document.querySelector('#cover').value);
   data.cover = cov;
-}
+};
 
-// calculte alpha1 & beta1 values based on f'c and
-// store 3 values in data object
-const concreteStrength = document.querySelector('#concStr');
-concreteStrength.onblur = function() {
+// 'Submit' button functions
+const parameters1 = document.querySelector('#button1');
+parameters1.onclick = function() {
+  
+  //calculte alpha1 & beta1 and store them in data object
   let fc = Number(document.querySelector('#concStr').value);
-  let a = 0.85 - (0.0015 * fc);
-  let b = 0.97 - (0.0025 * fc);
-  let alpha1 = Math.max(a, 0.67);
-  let beta1 = Math.max(b, 0.67);
+  let alpha = 0.85 - (0.0015 * fc);
+  let beta = 0.97 - (0.0025 * fc);
+  let alpha1 = Math.max(alpha, 0.67);
+  let beta1 = Math.max(beta, 0.67);
   data.fc = fc;
   data.alpha1 = alpha1;
   data.beta1 = beta1;
   document.querySelector('#alpha1').innerHTML = alpha1.toFixed(3);
   document.querySelector('#beta1').innerHTML = beta1.toFixed(3);
+
+  // calculate As min
+  let b = data.b;
+  let h = data.h;
+  let fy = data.fy;
+  let asmin = (0.2 * (Math.pow(fc, 0.5)) * b * h) / fy;
+  document.querySelector('#Asmin').innerHTML = asmin.toFixed(0);
+
+  // calculate Kr and store it in data object
+  let mf = data.Mf;
+  let d = data.d;
+  let Kr = (mf * Math.pow(10, 6))/(b * d * d);
+  data.Kr = Kr;
+  document.querySelector('#Kr').innerHTML = Kr.toFixed(3);
 };
-
-// calculate As min and As req
-
-
-// calculate rho balance and rho required
