@@ -60,6 +60,11 @@ cover.onblur = function() {
 const parameters1 = document.querySelector('#button1');
 parameters1.onclick = function() {
   
+  // alert if input numbers missing
+  if(data.Mf == 0 || data.b == 0 || data.d == 0 || data.h == 0 || data.fc == 0 || data.cover == 0) {
+    return alert('Input value(s) missing!');
+  }
+
   //calculte alpha1 & beta1 and store them in data object
   let fc = Number(document.querySelector('#concStr').value);
   let alpha = 0.85 - (0.0015 * fc);
@@ -86,3 +91,4 @@ parameters1.onclick = function() {
   data.Kr = Kr;
   document.querySelector('#Kr').innerHTML = Kr.toFixed(3);
 };
+
