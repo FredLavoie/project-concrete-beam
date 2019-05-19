@@ -35,14 +35,21 @@
   <button id="button2">Calculate</button>
   <h3>The reinforcement requirements are:</h3>
   <div id="results">
-    <p class="parameters">&rho;<sub>req</sub> = <span id="rhoReq">0.00%</span></p>
+    <p class="parameters">&rho;<sub>req</sub> = <span id="rhoReq">0.00</span>%</p>
     <p class="parameters">A<sub>s req</sub> = <span id="Asreq">0000</span> mm<sup>2</sup></p>
 
   </div>
-
+  <br><br><br>
   <div id="notes">
-    <br><br><br>
-    <p>notes: </p>
+    <p><u>notes:</u></p>
+    <ul>
+      <li>'Mf' is the force that the beam is subjected to in kN-m</li>
+      <li>'h' is the total height of the beam in mm</li>
+      <li>'d' is the distance from the top of the beam to the middle of the area of reinforcement in mm</li>
+      <li>'b' is the width of the beam in mm</li>
+      <li>'f'c' is the strength of the concerete in MPa</li>
+      <li>The 'cover' is the distance from the outside face of the beam to the longitudinal reinforcement in mm</li>
+  </ul>
   </div>
 
   <script src="script.js"></script>

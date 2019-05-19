@@ -5,7 +5,6 @@ const data = {
   d: 0,
   h: 0,
   fc: 0,
-  fy: 400,
   cover: 0,
   alpha1: 0,
   beta1: 0,
@@ -28,11 +27,11 @@ moment.onblur = function() {
   data.Mf = mf;
 };
 
-// store h in data object
-const height = document.querySelector('#h');
-height.onblur = function() {
-  let h = Number(document.querySelector('#h').value);
-  data.h = h;
+// store b in data object
+const base = document.querySelector('#b');
+base.onblur = function() {
+  let b = Number(document.querySelector('#b').value);
+  data.b = b;
 };
 
 // store d in data object
@@ -42,11 +41,11 @@ depth.onblur = function() {
   data.d = d;
 };
 
-// store b in data object
-const base = document.querySelector('#b');
-base.onblur = function() {
-  let b = Number(document.querySelector('#b').value);
-  data.b = b;
+// store h in data object
+const height = document.querySelector('#h');
+height.onblur = function() {
+  let h = Number(document.querySelector('#h').value);
+  data.h = h;
 };
 
 // store cover in data object
@@ -56,22 +55,28 @@ cover.onblur = function() {
   data.cover = cov;
 };
 
+// store f'c in data object
+const concSt = document.querySelector('#concStr');
+concSt.onblur = function() {
+  let concStr = Number(document.querySelector('#concStr').value);
+  data.fc = concStr;
+};
+
 // 'Submit' button functions
-const parameters1 = document.querySelector('#button1');
-parameters1.onclick = function() {
+const parameters = document.querySelector('#button1');
+parameters.onclick = function() {
   
   // alert if input numbers missing
-  if(data.Mf == 0 || data.b == 0 || data.d == 0 || data.h == 0 || data.fc == 0 || data.cover == 0) {
+  if(data.Mf == 0 || data.h == 0 || data.d == 0 || data.b == 0 || data.fc == 0 || data.cover == 0) {
     return alert('Input value(s) missing!');
   }
 
-  //calculte alpha1 & beta1 and store them in data object
-  let fc = Number(document.querySelector('#concStr').value);
+  // calculte alpha1 & beta1 and store them in data object
+  let fc = data.fc;
   let alpha = 0.85 - (0.0015 * fc);
   let beta = 0.97 - (0.0025 * fc);
   let alpha1 = Math.max(alpha, 0.67);
   let beta1 = Math.max(beta, 0.67);
-  data.fc = fc;
   data.alpha1 = alpha1;
   data.beta1 = beta1;
   document.querySelector('#alpha1').innerHTML = alpha1.toFixed(3);
@@ -80,8 +85,7 @@ parameters1.onclick = function() {
   // calculate As min
   let b = data.b;
   let h = data.h;
-  let fy = data.fy;
-  let asmin = (0.2 * (Math.pow(fc, 0.5)) * b * h) / fy;
+  let asmin = (0.2 * (Math.pow(fc, 0.5)) * b * h) / 400;
   document.querySelector('#Asmin').innerHTML = asmin.toFixed(0);
 
   // calculate Kr and store it in data object
@@ -90,4 +94,22 @@ parameters1.onclick = function() {
   let Kr = (mf * Math.pow(10, 6))/(b * d * d);
   data.Kr = Kr;
   document.querySelector('#Kr').innerHTML = Kr.toFixed(3);
+};
+
+// calculate button functions
+const results = document.querySelector('#button2');
+results.onclick = function() {
+  
+  // calculate rho req
+  let a = -115600 / (1.3 * data.alpha1 * data.fc);
+  let b = 340;
+  let c = -data.Kr;
+  let res1 = 100 * ((-1 * b + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a));
+  let res2 = 100 * ((-1 * b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a));
+  let rhoReq = Math.min(res1, res2);
+  document.querySelector('#rhoReq').innerHTML = rhoReq.toFixed(2);
+  
+  // calculate As req
+  let asreq = data.b * data.d * rhoReq / 100;
+  document.querySelector('#Asreq').innerHTML = asreq.toFixed(0);
 };

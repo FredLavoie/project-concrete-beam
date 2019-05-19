@@ -112,3 +112,12 @@ input {
 	display: inline;
 	padding-right: 40px;
 }
+
+#notes {
+	font-size: 0.8em;
+}
+
+ul li {
+	list-style: disc;
+	margin-left: 20px;
+}
