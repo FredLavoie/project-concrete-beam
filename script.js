@@ -91,4 +91,3 @@ parameters1.onclick = function() {
   data.Kr = Kr;
   document.querySelector('#Kr').innerHTML = Kr.toFixed(3);
 };
-
