@@ -76,7 +76,7 @@ h3 {
 	font-size: 1.0em;
 	text-decoration: underline;
 }
-sub {
+sub, sup {
 	font-size: 0.6em;
 }
 ::selection {
@@ -107,17 +107,20 @@ input {
 #button1:hover, #button2:hover  {
   background-color: rgb(43, 87, 182);
 }
-
 .parameters {
 	display: inline;
 	padding-right: 40px;
 }
-
 #notes {
 	font-size: 0.8em;
 }
-
 ul li {
 	list-style: disc;
 	margin-left: 20px;
+}
+
+#numBars10, #as10, #mr10, #numBars15, #as15, #mr15, 
+#numBars20, #as20, #mr20, #numBars25, #as25, #mr25, 
+#numBars30, #as30, #mr30 {
+	color:	blue;
 }

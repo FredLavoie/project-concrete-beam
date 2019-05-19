@@ -11,15 +11,6 @@ const data = {
   Kr: 0
 };
 
-// object containing available rebar data
-const rebarData = [
-  {name: '10M', dia: 11.3, area: 100},
-  {name: '15M', dia: 16.0, area: 200},
-  {name: '20M', dia: 19.5, area: 300},
-  {name: '25M', dia: 25.2, area: 500},
-  {name: '30M', dia: 29.9, area: 700}
-];
-
 // store Mf in data object
 const moment = document.querySelector('#momentForce');
 moment.onblur = function() {
@@ -91,7 +82,7 @@ parameters.onclick = function() {
   // calculate Kr and store it in data object
   let mf = data.Mf;
   let d = data.d;
-  let Kr = (mf * Math.pow(10, 6))/(b * d * d);
+  let Kr = (mf * 1e6)/(b * d * d);
   data.Kr = Kr;
   document.querySelector('#Kr').innerHTML = Kr.toFixed(3);
 };
@@ -112,4 +103,55 @@ results.onclick = function() {
   // calculate As req
   let asreq = data.b * data.d * rhoReq / 100;
   document.querySelector('#Asreq').innerHTML = asreq.toFixed(0);
+
+  // calculate results for 10M bars
+  let numBars10 = Math.ceil(asreq / 100);
+  let as10 = numBars10 * 100;
+  let rho10 = as10 / (data.b * data.d);
+  let kr10 = (1-((rho10 * 0.85 * 400) / (2 * data.alpha1 * 0.65 * data.fc))) * (rho10 * 0.85 * 400);
+  let mr10 = kr10 * data.b * data.d * data.d / 1e6;
+  document.querySelector('#numBars10').innerHTML = numBars10;
+  document.querySelector('#as10').innerHTML = as10;
+  document.querySelector('#mr10').innerHTML = mr10.toFixed(0);
+
+  // calculate results for 15M bars
+  let numBars15 = Math.ceil(asreq / 200);
+  let as15 = numBars15 * 200;
+  let rho15 = as15 / (data.b * data.d);
+  let kr15 = (1-((rho15 * 0.85 * 400) / (2 * data.alpha1 * 0.65 * data.fc))) * (rho15 * 0.85 * 400);
+  let mr15 = kr15 * data.b * data.d * data.d / 1e6;
+  document.querySelector('#numBars15').innerHTML = numBars15;
+  document.querySelector('#as15').innerHTML = as15;
+  document.querySelector('#mr15').innerHTML = mr15.toFixed(0);
+
+  // calculate results for 20M bars
+  let numBars20 = Math.ceil(asreq / 300);
+  let as20 = numBars20 * 300;
+  let rho20 = as20 / (data.b * data.d);
+  let kr20 = (1-((rho20 * 0.85 * 400) / (2 * data.alpha1 * 0.65 * data.fc))) * (rho20 * 0.85 * 400);
+  let mr20 = kr20 * data.b * data.d * data.d / 1e6;
+  document.querySelector('#numBars20').innerHTML = numBars20;
+  document.querySelector('#as20').innerHTML = as20;
+  document.querySelector('#mr20').innerHTML = mr20.toFixed(0);
+
+  // calculate results for 25M bars
+  let numBars25 = Math.ceil(asreq / 500);
+  let as25 = numBars25 * 500;
+  let rho25 = as25 / (data.b * data.d);
+  let kr25 = (1-((rho25 * 0.85 * 400) / (2 * data.alpha1 * 0.65 * data.fc))) * (rho25 * 0.85 * 400);
+  let mr25 = kr25 * data.b * data.d * data.d / 1e6;
+  document.querySelector('#numBars25').innerHTML = numBars25;
+  document.querySelector('#as25').innerHTML = as25;
+  document.querySelector('#mr25').innerHTML = mr25.toFixed(0);
+
+  // calculate results for 30M bars
+  let numBars30 = Math.ceil(asreq / 700);
+  let as30 = numBars30 * 700;
+  let rho30 = as30 / (data.b * data.d);
+  let kr30 = (1-((rho30 * 0.85 * 400) / (2 * data.alpha1 * 0.65 * data.fc))) * (rho30 * 0.85 * 400);
+  let mr30 = kr30 * data.b * data.d * data.d / 1e6;
+  document.querySelector('#numBars30').innerHTML = numBars30;
+  document.querySelector('#as30').innerHTML = as30;
+  document.querySelector('#mr30').innerHTML = mr30.toFixed(0);
+
 };
