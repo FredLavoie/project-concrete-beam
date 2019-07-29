@@ -58,8 +58,8 @@ const parameters = document.querySelector('#button1');
 parameters.onclick = function() {
   
   // alert if input numbers missing
-  if(data.Mf == 0 || data.h == 0 || data.d == 0 || data.b == 0 || data.fc == 0 || data.cover == 0) {
-    return alert('Input value(s) missing!');
+  if(data.Mf <= 0 || data.h <= 0 || data.d <= 0 || data.b <= 0 || data.fc <= 0 || data.cover <= 0) {
+    return alert('Input value(s) missing and/or are negative numbers!');
   }
 
   // calculte alpha1 & beta1 and store them in data object
@@ -153,5 +153,4 @@ results.onclick = function() {
   document.querySelector('#numBars30').innerHTML = numBars30;
   document.querySelector('#as30').innerHTML = as30;
   document.querySelector('#mr30').innerHTML = mr30.toFixed(0);
-
 };
