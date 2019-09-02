@@ -14,7 +14,6 @@ main {
 	background: white;
 	margin: auto;
 	padding: 3em;
-	width: 70%;
 	height: 100%;
 }
 p, li, select, option, form {
@@ -56,11 +55,11 @@ sub, sup {
 	color: #ffffff;
 }
 input {
-	width: 50px;
+	width: 4em;
 }
 ul li {
 	list-style: disc;
-	margin-left: 20px;
+	margin-left: 1.2em;
 }
 
 /*************************************************************************************
@@ -79,31 +78,30 @@ ul li {
 
 .parameters {
 	display: inline;
-	padding-right: 40px;
+	padding-right: 2.5em;
 }
 
 #input-div {
 	display: flex;
 	justify-content: center;
-	width: 300px;
+	width: 20em;
 	text-align: right;
 }
 
 #subButton {
 	color: rgb(255, 255, 255);
 	background: rgb(115, 154, 238);
-	padding-left: 6px;
-	padding-right: 6px;
-	padding-top: 2px;
-	padding-bottom: 3px;
-	margin-bottom: 15px;
-	margin-top: 15px;
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+	padding-top: 0.75em;
+	padding-bottom: 0.75em;
+	margin-bottom: 1em;
 	margin: auto;
 	font-size: 1.0em;
 	border: none;
 	text-align: center;
-	border-radius: 4px;
-	width: 100px;
+	border-radius: 0.25em;
+	width: 6em;
 }
 
 #subButton:hover  {
@@ -111,7 +109,9 @@ ul li {
 }
 
 #notes {
+	margin-top: 2em;
 	font-size: 0.8em;
+	width: 40em;
 }
 
 #numBars10, #as10, #mr10, #numBars15, #as15, #mr15, 
@@ -124,5 +124,15 @@ ul li {
 	Media queries
 **************************************************************************************/
 
+@media (min-width: 801px) {
+  main {
+    width: 70%;
+  }
+}
 
+ @media (max-width: 800px) {
+  body, main {
+    width: auto;
+  }
+}
 

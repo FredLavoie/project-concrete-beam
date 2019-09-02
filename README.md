@@ -13,6 +13,6 @@ is not to be used for engineering design calculations.
 
 ## Screenshots
 
-<img src="./screenshots/Empty-form.png" width="800">
+<img src="./screenshots/emptyForm.png" width="800">
 
-<img src="./screenshots/Example-numbers.png" width="800">
+<img src="./screenshots/filledForm.png" width="800">
