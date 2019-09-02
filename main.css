@@ -2,7 +2,6 @@
 	CSS tag styling
 **************************************************************************************/
 html {
-
 	height: 100%;
 }
 body {
@@ -43,7 +42,8 @@ h2 {
 	text-align: center;
 }
 h3 {
-	margin-top: 15px;
+	margin-top: 1em;
+	margin-bottom: 1em;
 	font-size: 1.0em;
 	text-decoration: underline;
 	text-align: center;
@@ -67,12 +67,25 @@ ul li {
 	CSS id and class styling
 **************************************************************************************/
 
+.flex-container {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 2em;
+}
+
+.container {
+	display: inline-block;
+}
+
+.parameters {
+	display: inline;
+	padding-right: 40px;
+}
+
 #input-div {
-	/* display: inline-block; */
 	display: flex;
 	justify-content: center;
 	width: 300px;
-
 	text-align: right;
 }
 
@@ -85,6 +98,7 @@ ul li {
 	padding-bottom: 3px;
 	margin-bottom: 15px;
 	margin-top: 15px;
+	margin: auto;
 	font-size: 1.0em;
 	border: none;
 	text-align: center;
@@ -96,15 +110,6 @@ ul li {
   background-color: rgb(43, 87, 182);
 }
 
-.container {
-	display: inline-block;
-}
-
-.parameters {
-	display: inline;
-	padding-right: 40px;
-}
-
 #notes {
 	font-size: 0.8em;
 }
@@ -112,6 +117,12 @@ ul li {
 #numBars10, #as10, #mr10, #numBars15, #as15, #mr15, 
 #numBars20, #as20, #mr20, #numBars25, #as25, #mr25, 
 #numBars30, #as30, #mr30 {
-	color:	blue;
+	color:	rgb(43, 87, 182);
 }
+
+/*************************************************************************************
+	Media queries
+**************************************************************************************/
+
+
 
