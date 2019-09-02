@@ -72,50 +72,56 @@ results.onclick = function() {
     return alert('Input value(s) missing and/or are negative numbers!');
   }
 
-  // calculte alpha1 & beta1 and store them in data object
+  calcAlpha1Beta1();
+  calcAsMin();
+  calcKr();
+  
+  let rhoReq = calculateRhoReq();
+  let asreq = calcAsReq(rhoReq);
+  rebarResults(rebarArr, asreq);
+
+};
+
+
+/********************************[ functions ]***********************************/
+/********************************************************************************/
+
+function calcAlpha1Beta1() {
   let alpha = 0.85 - (0.0015 * data.fc);
   let beta = 0.97 - (0.0025 * data.fc);
   data.alpha1 = Math.max(alpha, 0.67);
   data.beta1 = Math.max(beta, 0.67);
   document.querySelector('#alpha1').innerHTML = data.alpha1.toFixed(3);
   document.querySelector('#beta1').innerHTML = data.beta1.toFixed(3);
+}
 
-  // calculate As min
+function calcAsMin() {
   let asmin = (0.2 * (Math.pow(data.fc, 0.5)) * data.b * data.h) / 400;
   document.querySelector('#Asmin').innerHTML = asmin.toFixed(0);
+}
 
-  // calculate Kr and store it in data object
+function calcKr() {
   data.Kr = (data.Mf * 1e6)/(data.b * data.d * data.d);
   document.querySelector('#Kr').innerHTML = data.Kr.toFixed(3);
-  
-  // calculate rho req
-  let aa = -115600 / (1.3 * data.alpha1 * data.fc);
-  let bb = 340;
-  let cc = -data.Kr;
-  let res1 = 100 * ((-1 * bb + Math.sqrt(Math.pow(bb, 2) - (4 * aa * cc))) / (2 * aa));
-  let res2 = 100 * ((-1 * bb - Math.sqrt(Math.pow(bb, 2) - (4 * aa * cc))) / (2 * aa));
-  let rhoReq = Math.min(res1, res2);
-  document.querySelector('#rhoReq').innerHTML = rhoReq.toFixed(2);
-  
-  
+}
 
+function calcAsReq(rhoReq) {
   let asreq = data.b * data.d * rhoReq / 100;
   document.querySelector('#Asreq').innerHTML = asreq.toFixed(0);
+  return asreq;
+}
 
-  rebarResults(rebarArr, asreq);
-  console.log('This is the data object by the end: ', data);
-};
+function calculateRhoReq() {
+  let a = -115600 / (1.3 * data.alpha1 * data.fc);
+  let b = 340;
+  let c = -data.Kr;
+  let res1 = 100 * ((-1 * b + Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a));
+  let res2 = 100 * ((-1 * b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) / (2 * a));
+  let rhoReq = Math.min(res1, res2);
+  document.querySelector('#rhoReq').innerHTML = rhoReq.toFixed(2);
 
-
-
-
-/********************************[ functions ]***********************************/
-/********************************************************************************/
-
-// function calcAsReq() {
-//   let asreq = data.b * data.d * rhoReq / 100;
-//   document.querySelector('#Asreq').innerHTML = asreq.toFixed(0);
-// }
+  return rhoReq;
+}
 
 function rebarResults(rebarArr, asreq) {
   for(let ea of rebarArr) {
