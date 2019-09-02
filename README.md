@@ -14,7 +14,7 @@ is not to be used for engineering design calculations.
 ## Screenshots
 
 ### Empty form:
-<img src="./screenshots/emptyForm.png" width="800">
+<img src="./docs/emptyForm.png" width="800">
 
 ### Filled form:
-<img src="./screenshots/filledForm.png" width="800">
+<img src="./docs/filledForm.png" width="800">
