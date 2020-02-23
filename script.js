@@ -25,61 +25,33 @@ const rebarArr = [
 /*************************************************************************************/
 
 // store Mf in data object
-const moment = document.querySelector('#momentForce');
-moment.onblur = function() {
+document.querySelector('#momentForce').onblur = function() {
   data.Mf = Number(document.querySelector('#momentForce').value);
 };
 
 // store b in data object
-const base = document.querySelector('#b');
-base.onblur = function() {
+document.querySelector('#b').onblur = function() {
   data.b = Number(document.querySelector('#b').value);
 };
 
 // store d in data object
-const depth = document.querySelector('#d');
-depth.onblur = function() {
+document.querySelector('#d').onblur = function() {
   data.d = Number(document.querySelector('#d').value);
 };
 
 // store h in data object
-const height = document.querySelector('#h');
-height.onblur = function() {
+document.querySelector('#h').onblur = function() {
   data.h = Number(document.querySelector('#h').value);
 };
 
 // store cover in data object
-const cover = document.querySelector('#cover');
-cover.onblur = function() {
+document.querySelector('#cover').onblur = function() {
   data.cover = Number(document.querySelector('#cover').value);
 };
 
 // store f'c in data object
-const concSt = document.querySelector('#concStr');
-concSt.onblur = function() {
+document.querySelector('#concStr').onblur = function() {
   data.fc = Number(document.querySelector('#concStr').value);
-};
-
-/***************************[ calculate button ]*********************************/
-/********************************************************************************/
-
-const results = document.querySelector('#subButton');
-results.onclick = function() {
-
-  // alert if input numbers missing
-  if(data.Mf <= 0 || data.h <= 0 || data.d <= 0 || data.b <= 0
-      || data.fc <= 0 || data.cover <= 0) {
-    return alert('Input value(s) missing and/or are negative numbers!');
-  }
-
-  calcAlpha1Beta1();
-  calcAsMin();
-  calcKr();
-  
-  let rhoReq = calculateRhoReq();
-  let asreq = calcAsReq(rhoReq);
-  rebarResults(rebarArr, asreq);
-
 };
 
 
@@ -105,12 +77,6 @@ function calcKr() {
   document.querySelector('#Kr').innerHTML = data.Kr.toFixed(3);
 }
 
-function calcAsReq(rhoReq) {
-  let asreq = data.b * data.d * rhoReq / 100;
-  document.querySelector('#Asreq').innerHTML = asreq.toFixed(0);
-  return asreq;
-}
-
 function calculateRhoReq() {
   let a = -115600 / (1.3 * data.alpha1 * data.fc);
   let b = 340;
@@ -121,6 +87,12 @@ function calculateRhoReq() {
   document.querySelector('#rhoReq').innerHTML = rhoReq.toFixed(2);
 
   return rhoReq;
+}
+
+function calcAsReq(rhoReq) {
+  let asreq = data.b * data.d * rhoReq / 100;
+  document.querySelector('#Asreq').innerHTML = asreq.toFixed(0);
+  return asreq;
 }
 
 function rebarResults(rebarArr, asreq) {
@@ -135,3 +107,23 @@ function rebarResults(rebarArr, asreq) {
     document.querySelector(`#mr${ea.size}`).innerHTML = mr.toFixed(0);
   }
 }
+
+/***************************[ calculate button ]*********************************/
+/********************************************************************************/
+
+document.querySelector('#subButton').onclick = function() {
+
+  // alert if input numbers missing
+  if(data.Mf <= 0 || data.h <= 0 || data.d <= 0 || data.b <= 0
+      || data.fc <= 0 || data.cover <= 0) {
+    return alert('Input value(s) missing and/or are negative numbers!');
+  } else {
+    calcAlpha1Beta1();
+    calcAsMin();
+    calcKr();
+    let rhoReq = calculateRhoReq();
+    let asreq = calcAsReq(rhoReq);
+    rebarResults(rebarArr, asreq);
+	}
+};
+
